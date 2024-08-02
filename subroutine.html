@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Alert</title>
+    <style>
+        body {
+            background-color: black;
+            color: lime;
+            font-family: "Courier New", Courier, monospace;
+            padding: 20px;
+        }
+        .console {
+            border: 2px solid lime;
+            padding: 20px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const lines = [
+                "{SYS-ALERT}",
+                "[Device ID: XZ-3948]",
+                "[Protocol: INIT-4 Subroutine]",
+                "",
+                "Initial Diagnostic Sequence...",
+                "==============================",
+                "> Scanning Ingress Port...",
+                "> Routing Path: 0x4A3B2",
+                "> Key Exchange Initialized",
+                "> Intrusion Algorithm: A23F-Kappa",
+                "",
+                "Executing...",
+                "=============================",
+                "1. Hash Collision Event - Initiated",
+                "2. Null Packet Injection - Active",
+                "3. Recursive Traceback - Enabled",
+                "4. Tracing IP - VPN bypass",
+                "",
+                "{NOTICE}",
+                "Awaiting response for additional package delivery...",
+                "",
+                "==============================",
+                "[STAND BY FOR TRANSMISSION]"
+            ];
+            let index = 0;
+            const delay = 1000; // 1 second delay between each line
+            const consoleElement = document.querySelector(".console pre");
+
+            function displayNextLine() {
+                if (index < lines.length) {
+                    consoleElement.textContent += lines[index] + "\n";
+                    index++;
+                    setTimeout(displayNextLine, delay);
+                }
+            }
+
+            displayNextLine();
+        });
+    </script>
+</head>
+<body>
+    <div class="console">
+        <pre></pre>
+    </div>
+</body>
+</html>
