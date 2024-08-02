@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Alert</title>
+    <style>
+        body {
+            background-color: black;
+            color: lime;
+            font-family: "Courier New", Courier, monospace;
+            padding: 20px;
+        }
+        .console {
+            border: 2px solid lime;
+            padding: 20px;
+            margin: 0 auto;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 0 10px lime;
+            background-color: black;
+            overflow: hidden;
+            white-space: pre-wrap;
+        }
+        .blink {
+            animation: blinker 1s step-end infinite;
+        }
+        @keyframes blinker {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const lines = [
+                "{SYS-ALERT}",
+                "[Device ID: XZ-3948]",
+                "[Protocol: INIT-4 Subroutine]",
+                "",
+                "Initial Diagnostic Sequence...",
+                "==============================",
+                "> Scanning Ingress Port...",
+                "  [Response: Ingress Port Open]",
+                "> Routing Path: 0x4A3B2",
+                "  [Response: Path Verified]",
+                "> Key Exchange Initialized",
+                "  [Response: Key Exchange Successful]",
+                "> Intrusion Algorithm: A23F-Kappa",
+                "  [Response: Intrusion Algorithm Active]",
+                "",
+                "Executing...",
+                "=============================",
+                "1. Hash Collision Event - Initiated",
+                "  [Response: Hash Collision Detected]",
+                "2. Null Packet Injection - Active",
+                "  [Response: Null Packets Acknowledged]",
+                "3. Recursive Traceback - Enabled",
+                "  [Response: Traceback in Progress]",
+                "4. Tracing IP - VPN bypass",
+                "  [Response: IP Trace Successful]",
+                "",
+                "{NOTICE}",
+                "Awaiting response for additional package delivery...",
+                "  [Response: Acknowledged]",
+                "",
+                "==============================",
+                "[STAND BY FOR TRANSMISSION]"
+            ];
+            let index = 0;
+            const delay = 1000; // 1 second delay between each line
+            const consoleElement = document.querySelector(".console pre");
+            const cursorElement = document.querySelector(".blink");
+
+            function displayNextLine() {
+                if (index < lines.length) {
+                    consoleElement.textContent += lines[index] + "\n";
+                    index++;
+                    setTimeout(displayNextLine, delay);
+                } else {
+                    cursorElement.style.display = "none"; // Hide cursor when done
+                }
+            }
+
+            displayNextLine();
+        });
+    </script>
+</head>
+<body>
+    <div class="console">
+        <pre></pre>
+        <div class="blink">_</div>
+    </div>
+</body>
+</html>
